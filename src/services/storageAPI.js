@@ -11,3 +11,7 @@ export function addDeck(newDeck) {
 export function clearDecks() {
   return AsyncStorage.removeItem('decks')
 }
+
+export function addCard(updatedDeck) {
+  AsyncStorage.mergeItem('decks', JSON.stringify(updatedDeck))
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, StatusBar, ScrollView } from 'react-native'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { createStore, applyMiddleware, compose } from 'redux'
 
 import reduxThunk from 'redux-thunk';
@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 import reducers from './src/reducers'
 import AddDeck from './src/components/AddDeck'
 import Decks from './src/components/Decks'
+import DeckDetail from './src/components/DeckDetail'
+import AddCard from './src/components/AddCard'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -19,6 +21,28 @@ const Tabs = TabNavigator({
   },
   ["Add A Deck"]: {
     screen: AddDeck,
+  }
+}, {
+  navigationOptions: {
+    header: null
+  }
+})
+
+const Stack = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTitle: "Add Card",
+    }
   }
 })
 
@@ -38,7 +62,7 @@ export default class App extends Component {
             barStyle="light-content"
           />
 
-          <Tabs />
+          <Stack />
 
         </View>
       </Provider>

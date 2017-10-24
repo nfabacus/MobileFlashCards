@@ -1,13 +1,17 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const SingleDeckSummary = ({deckTitle, numOfCards})=>{
+const SingleDeckSummary = (props)=>{
   const { deckContainer, title, cardDetail } = styles
+  console.log("props in SingleDeckSummary>>>>>>", props)
   return (
-    <View style={deckContainer}>
-      <Text style={title}>{deckTitle}</Text>
-      <Text style={cardDetail}>{numOfCards} cards</Text>
-    </View>
+    <TouchableOpacity
+      style={deckContainer}
+      onPress={props.onPress}
+    >
+      <Text style={title}>{props.deckTitle}</Text>
+      <Text style={cardDetail}>{props.numOfCards} cards</Text>
+    </TouchableOpacity>
   )
 }
 

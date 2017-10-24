@@ -1,6 +1,7 @@
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const RESET_DECKS = 'RESET_DECKS'
+export const ADD_CARD = 'ADD_CARD'
 
 import * as StorageAPI from '../services/storageAPI'
 
@@ -32,5 +33,18 @@ export function resetDecks() {
   StorageAPI.clearDecks()
   return {
     type: RESET_DECKS
+  }
+}
+
+export function addCard(deckTitle, cardObj) {
+  console.log("addCard executed in action!!!")
+  const updatedDeck = {[deckTitle]:cardObj}
+  console.log("updatedDeck:", updatedDeck)
+  StorageAPI.addCard(updatedDeck)
+  const updatedDeckWithKeys = { deckTitle, cardObj }
+
+  return {
+    type: ADD_CARD,
+    updatedDeckWithKeys
   }
 }

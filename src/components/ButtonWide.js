@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 
-const Button =(props)=>{
+const ButtonWide =(props)=>{
   const { container, button, buttonText } = styles
   return (
     <View style={container}>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     height: 40,
-    width: 100,
+    width: 200,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
   }
 })
 
-Button.propTypes = {
+ButtonWide.propTypes = {
   text: PropTypes.string,
   onPress: PropTypes.func,
   bgColor: PropTypes.string,
 }
 
-export default Button
+export default ButtonWide

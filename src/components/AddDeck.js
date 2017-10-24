@@ -24,6 +24,9 @@ class AddDeck extends Component {
       const submittedText = this.state.text.trim()
       if(submittedText !=="") {
         this.props.addDeck(submittedText)
+        this.setState({
+          text:""
+        })
         this.props.navigation.navigate('Decks')
       }
     }

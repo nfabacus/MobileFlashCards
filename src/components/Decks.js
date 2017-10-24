@@ -13,25 +13,41 @@ class Decks extends Component {
 
     render(){
       if(this.props.decks){
-        console.log("this.pros.decks!>>>>", this.props.decks)
+        console.log("this.pros in Decks!>>>>", this.props)
         const deckTitlesArr = Object.keys(this.props.decks)
         console.log("deckTitlesArr!>>>>", deckTitlesArr)
         return (
-          <View>
+          <View style={{flex:1}}>
             <Header title="Decks" />
-            <Button onPress={()=>this.props.resetDecks()} text="Clear all" />
-              <ScrollView>
-                {
-                  deckTitlesArr.map((deckTitle, index)=>{
-                    const questionsArr = Object.keys(this.props.decks[deckTitle])
-                    const numOfCards = questionsArr.length
-    
-                    return (
-                      <SingleDeckSummary key={index} deckTitle={deckTitle} numOfCards={numOfCards} />
-                    )
-                  })
-                }
-              </ScrollView>
+            <View style={styles.btnContainer}>
+              <Button
+                onPress={()=>this.props.resetDecks()} 
+                text="Clear all"
+                bgColor="red"
+              />
+            </View>
+            
+            <ScrollView>
+              {
+                deckTitlesArr.map((deckTitle, index)=>{
+                  const questionsArr = Object.keys(this.props.decks[deckTitle])
+                  const numOfCards = questionsArr.length
+  
+                  return (
+                    <SingleDeckSummary
+                      key={index}
+                      deckTitle={deckTitle}
+                      numOfCards={numOfCards}
+                      onPress={()=>this.props.navigation.navigate(
+                        'DeckDetail',
+                        {deckTitle}
+                        )
+                      }
+                    />
+                  )
+                })
+              }
+            </ScrollView>
           </View>
         )
       } else {
@@ -43,6 +59,14 @@ class Decks extends Component {
       }
     }
 }
+
+const styles = StyleSheet.create({
+  btnContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80
+  }
+})
 
 function mapStateToProps(state) {
   if(state&&state.decks) {
