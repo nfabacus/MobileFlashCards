@@ -11,6 +11,7 @@ import AddDeck from './src/components/AddDeck'
 import Decks from './src/components/Decks'
 import DeckDetail from './src/components/DeckDetail'
 import AddCard from './src/components/AddCard'
+import QuizView from './src/components/QuizView'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -42,6 +43,12 @@ const Stack = StackNavigator({
     screen: AddCard,
     navigationOptions: {
       headerTitle: "Add Card",
+    }
+  },
+  Quiz: {
+    screen: QuizView,
+    navigationOptions: {
+      headerTitle: "Quiz"
     }
   }
 })

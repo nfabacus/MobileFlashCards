@@ -33,6 +33,10 @@ class DeckDetail extends Component {
           bgColor="purple"
         />
         <Button
+          onPress={()=>this.props.navigation.navigate(
+            'Quiz',
+            {deckTitle}
+          )}
           text="Start Quiz"
         />
       </View>
