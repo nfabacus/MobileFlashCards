@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Animated } from 'react-native'
 import Header from './Header'
 import SingleDeckSummary from './SingleDeckSummary'
 import { receiveDecks, resetDecks } from '../actions'

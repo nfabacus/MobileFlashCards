@@ -26,6 +26,14 @@ class QuizView extends Component {
     })
   }
 
+  restartQuiz=()=>{
+    this.setState({
+      showAnswer: false,
+      quizPos: 0,
+      score: 0
+    })
+  }
+
   render (){
     const {deckTitle} = this.props.navigation.state.params
     const { container, titleText, subTitleText, answerText, spacer} = styles
@@ -43,7 +51,7 @@ class QuizView extends Component {
       if(quizPos<numOfCards) {
         return (
           <View style={container}>
-            <Text>{quizPos+1}/{numOfCards}</Text>
+            <Text>{numOfCards-quizPos}/{numOfCards}</Text>
             <Text style={titleText}>{!showAnswer?questionsArr[quizPos]:currentDeck[questionsArr[quizPos]]}</Text>
             <TouchableOpacity onPress={this.toggleShowAnswer}>
               <Text style={answerText}>{!showAnswer?"Answer":"Question"}</Text>
@@ -72,11 +80,16 @@ class QuizView extends Component {
               Your score: {Math.round((score/numOfCards)*100)} %
             </Text>
             <ButtonWide
+              text="Restart the quiz"
+              onPress={()=>this.restartQuiz()}
+            />
+            <ButtonWide
               text="Back to Deck"
               onPress={()=>this.props.navigation.navigate(
                 'DeckDetail',
                 {deckTitle}
               )}
+              bgColor="blue"
             />
           </View>
         )
