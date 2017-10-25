@@ -1,6 +1,6 @@
 # Mobile Flash Cards
 24th Oct, 2017 <br/>
-This is a Mobile Flash Cards application, which runs on Android emulator.  I have not tested on iOS emulator, but it should also run on iOS emulator, with a correct set-up. 
+This is a Mobile Flash Cards application, which runs on Android emulator.  I have not tested on iOS emulator. LocalNotification may also require slightly different setup for iOS. 
 
 I built this app as a part of the final assignment for the React Nanodegree by Udacity.
 

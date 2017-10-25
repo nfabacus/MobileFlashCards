@@ -12,8 +12,7 @@ import Decks from './src/components/Decks'
 import DeckDetail from './src/components/DeckDetail'
 import AddCard from './src/components/AddCard'
 import QuizView from './src/components/QuizView'
-
-import PushNotification from 'react-native-push-notification'
+import PushController from './src/components/PushController'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -62,13 +61,7 @@ const finalCreateStore = compose(
 export const store = finalCreateStore(reducers);
 
 export default class App extends Component {
-  componentDidMount() {
-    PushNotification.configure({
-      onNotification: function(notification) {
-        console.log( 'NOTIFICATION:', notification );
-      },
-    })
-  }
+
   render() {
     return (
       <Provider store={store}>
@@ -79,7 +72,7 @@ export default class App extends Component {
           />
 
           <Stack />
-
+          <PushController />
         </View>
       </Provider>
     );

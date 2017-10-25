@@ -4,12 +4,38 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import Button from './Button'
 import ButtonWide from './ButtonWide'
 
+import { setLocalNotification, clearLocalNotification } from '../services/utils'
+
 class QuizView extends Component {
 
   state={
     showAnswer: false,
     quizPos: 0,
-    score: 0
+    score: 0,
+    currentDeck: null,
+    deckTitle: null,
+    numOfCards: 0
+  }
+
+  componentDidMount() {
+      const {deckTitle} = this.props.navigation.state.params
+      let numOfCards
+      const currentDeck = this.props.decks[deckTitle]
+      if(currentDeck){
+        numOfCards = Object.keys(currentDeck).length
+      } else {
+        numOfCards = 0
+      }
+      this.setState({
+        currentDeck,
+        deckTitle,
+        numOfCards,
+      },()=>{
+        if(this.state.numOfCards>0){
+          clearLocalNotification()
+            .then(setLocalNotification)
+        }
+      })
   }
 
   toggleShowAnswer=()=>{
@@ -35,19 +61,10 @@ class QuizView extends Component {
   }
 
   render (){
-    const {deckTitle} = this.props.navigation.state.params
+    const {currentDeck, deckTitle, numOfCards, quizPos, showAnswer, score } = this.state
     const { container, titleText, subTitleText, answerText, spacer} = styles
-    let numOfCards
-    const currentDeck = this.props.decks[deckTitle]
-    if(currentDeck){
-      numOfCards = Object.keys(currentDeck).length
-    } else {
-      numOfCards = 0
-    }
     if(numOfCards>0){
       const questionsArr = Object.keys(currentDeck)
-      const {quizPos, showAnswer, score} = this.state
-      console.log("data>>>>>>>",quizPos, showAnswer, score)
       if(quizPos<numOfCards) {
         return (
           <View style={container}>

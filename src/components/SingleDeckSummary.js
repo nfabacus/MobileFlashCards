@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "black",
     borderWidth: 1,
+    borderRadius: 10,
     marginTop: 5,
     marginLeft: 5,
     marginRight: 5,
