@@ -26,3 +26,8 @@ yarn install
 react-native run-android
 ```
 
+### references
+https://facebook.github.io/react-native/
+https://www.udemy.com/the-complete-react-native-and-redux-course/learn/v4/overview
+https://www.youtube.com/watch?v=TQmudJLhPx8
+https://github.com/zo0r/react-native-push-notification
